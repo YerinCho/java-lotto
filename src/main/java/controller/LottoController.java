@@ -1,7 +1,6 @@
 package controller;
 
-import domain.Lotto;
-import domain.Lottos;
+import domain.*;
 import domain.purchase.Count;
 import domain.purchase.Money;
 import domain.purchase.PurchaseCounts;
@@ -26,6 +25,7 @@ public class LottoController {
         PurchaseCounts purchaseCounts = buyLotto();
         Lottos lottos = generateLottos(purchaseCounts);
         showLottos(lottos, purchaseCounts);
+        WinningLotto winningLotto = generateWinningLotto();
     }
 
     private PurchaseCounts buyLotto() {
@@ -58,6 +58,13 @@ public class LottoController {
     private void showLottos(Lottos lottos, PurchaseCounts purchaseCounts) {
         outputView.showPurchaseCount(purchaseCounts);
         outputView.showLottos(lottos);
+    }
+
+    private WinningLotto generateWinningLotto() {
+        LottoNumbers lottoNumbers = LottoNumbers.newLottoNumbers();
+        Lotto lotto = Lotto.createManualLotto(inputView.inputLottoNumber());
+        LottoNumber bonusNumber = lottoNumbers.valueOf(inputView.inputBonusNumber());
+        return new WinningLotto(lotto, bonusNumber);
     }
 
 }

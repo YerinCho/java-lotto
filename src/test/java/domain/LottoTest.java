@@ -44,4 +44,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 한장은 서로 다른 숫자로 이루어져 있어야 합니다.");
     }
+
+    @Test
+    @DisplayName("해당 번호가 있는지 확인")
+    void contains() {
+        List<Integer> lottoNumbers = StringUtils.splitToInteger("1,6,2,3,4,5");
+        Lotto lotto = Lotto.createManualLotto(lottoNumbers);
+        assertThat(lotto.contains(new LottoNumber(1))).isTrue();
+        assertThat(lotto.contains(new LottoNumber(10))).isFalse();
+    }
 }

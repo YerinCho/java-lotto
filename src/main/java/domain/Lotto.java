@@ -37,6 +37,10 @@ public class Lotto {
         }
     }
 
+    public boolean contains(LottoNumber number) {
+        return lotto.contains(number);
+    }
+
     public List<LottoNumber> getLotto() {
         return lotto;
     }
@@ -46,5 +50,4 @@ public class Lotto {
         Collections.sort(lotto);
         return lotto.toString();
     }
-
 }

@@ -32,4 +32,9 @@ public class InputView {
     public List<Integer> inputLottoNumber() {
         return StringUtils.splitToInteger(SCANNER.nextLine());
     }
+
+    public int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해주세요.");
+        return StringUtils.parseInt(SCANNER.nextLine());
+    }
 }
