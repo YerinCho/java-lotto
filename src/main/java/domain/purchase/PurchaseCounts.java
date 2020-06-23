@@ -13,4 +13,16 @@ public class PurchaseCounts {
         this.autoCount = autoCount;
         this.manualCount = manualCount;
     }
+
+    public int getManualCount() {
+        return manualCount.getCount();
+    }
+
+    public int getAutoCount() {
+        return autoCount.getCount();
+    }
+
+    public int getAllCount() {
+        return manualCount.getCount() + autoCount.getCount();
+    }
 }

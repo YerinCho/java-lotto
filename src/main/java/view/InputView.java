@@ -2,6 +2,8 @@ package view;
 
 import utils.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -16,5 +18,18 @@ public class InputView {
     public int inputManualCount() {
         System.out.println("구매할 수동 로또 개수를 입력해주세요.(숫자만 입력)");
         return StringUtils.parseInt(SCANNER.nextLine());
+    }
+
+    public List<List<Integer>> inputManualLottoNumbers(int manualCount) {
+        List<List<Integer>> manualLottoNumbers = new ArrayList<>();
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+        for (int i = 0; i < manualCount; i++) {
+            manualLottoNumbers.add(inputLottoNumber());
+        }
+        return manualLottoNumbers;
+    }
+
+    public List<Integer> inputLottoNumber() {
+        return StringUtils.splitToInteger(SCANNER.nextLine());
     }
 }
