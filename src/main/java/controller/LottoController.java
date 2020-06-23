@@ -25,6 +25,7 @@ public class LottoController {
     public void run() {
         PurchaseCounts purchaseCounts = buyLotto();
         Lottos lottos = generateLottos(purchaseCounts);
+        showLottos(lottos, purchaseCounts);
     }
 
     private PurchaseCounts buyLotto() {
@@ -52,6 +53,11 @@ public class LottoController {
                 .stream()
                 .map(Lotto::createManualLotto)
                 .collect(Collectors.toList());
+    }
+
+    private void showLottos(Lottos lottos, PurchaseCounts purchaseCounts) {
+        outputView.showPurchaseCount(purchaseCounts);
+        outputView.showLottos(lottos);
     }
 
 }

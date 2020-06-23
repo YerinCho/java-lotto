@@ -1,15 +1,16 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
     public static final int LOTTO_LENGTH = 6;
     private static final LottoFactory lottoFactory = LottoFactory.getLottoFactory();
-    private final List<LottoNumber> Lotto;
+    private final List<LottoNumber> lotto;
 
     private Lotto(final List<LottoNumber> lotto) {
         validate(lotto);
-        this.Lotto = lotto;
+        this.lotto = lotto;
     }
 
     public static Lotto createAutoLotto() {
@@ -27,6 +28,13 @@ public class Lotto {
     }
 
     public List<LottoNumber> getLotto() {
-        return Lotto;
+        return lotto;
     }
+
+    @Override
+    public String toString() {
+        Collections.sort(lotto);
+        return lotto.toString();
+    }
+
 }

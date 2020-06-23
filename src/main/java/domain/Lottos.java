@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -14,5 +15,9 @@ public class Lottos {
         if (lottos == null || lottos.isEmpty()) {
             throw new IllegalArgumentException("로또는 1개 이상 구매해야 합니다.");
         }
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 }
