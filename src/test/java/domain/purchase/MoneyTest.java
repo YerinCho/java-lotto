@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class MoneyTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {1000, 3456})
+    @ValueSource(ints = {1000, 3000})
     @DisplayName("정상범위의 구입금액 테스트")
     void money (int value) {
         Money money = new Money(value);
@@ -30,6 +30,15 @@ class MoneyTest {
         assertThatThrownBy(() -> new Money(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("1000원 이상의 금액을 입력 해 주세요.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3333, 2001})
+    @DisplayName("1000원단위 입력에 대한 예외처리")
+    void validate(int value) {
+        assertThatThrownBy(() -> new Money(value))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("1000원 단위로 입력하세요.");
     }
 
     @Test

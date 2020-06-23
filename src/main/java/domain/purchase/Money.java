@@ -16,6 +16,9 @@ public class Money {
         if (money < MIN_MONEY) {
             throw new IllegalArgumentException(MONEY_INPUT_ERROR_MESSAGE);
         }
+        if (money % MIN_MONEY != 0) {
+            throw new IllegalArgumentException("1000원 단위로 입력하세요.");
+        }
     }
 
     public int calculateCount() {
@@ -24,6 +27,6 @@ public class Money {
 
     public double calculateWinningRate(WinningResult winningResult) {
         int winningMoney = winningResult.calculateWinningMoney();
-        return (winningMoney - money) / money;
+        return (double) (winningMoney - money) / money;
     }
 }
