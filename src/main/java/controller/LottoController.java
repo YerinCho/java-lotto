@@ -1,6 +1,8 @@
 package controller;
 
-import domain.Money;
+import domain.purchase.Count;
+import domain.purchase.Money;
+import domain.purchase.PurchaseCounts;
 import view.InputView;
 import view.OutputView;
 
@@ -20,6 +22,8 @@ public class LottoController {
 
     private void buyLotto() {
         Money money = new Money(inputView.inputMoney());
+        Count manualCount = Count.createManualCount(money, inputView.inputManualCount());
+        PurchaseCounts purchaseCounts = new PurchaseCounts(Count.createAutoCount(money, manualCount), manualCount);
     }
 
 }
