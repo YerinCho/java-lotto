@@ -1,7 +1,9 @@
 package domain;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     public static final int LOTTO_LENGTH = 6;
@@ -9,7 +11,8 @@ public class Lotto {
     private final List<LottoNumber> lotto;
 
     private Lotto(final List<LottoNumber> lotto) {
-        validate(lotto);
+        validateLength(lotto);
+        validateDuplication(lotto);
         this.lotto = lotto;
     }
 
@@ -21,9 +24,16 @@ public class Lotto {
         return new Lotto(lottoFactory.createManualLotto(manualLottoNumbers));
     }
 
-    private void validate(List<LottoNumber> lotto) {
+    private void validateLength(List<LottoNumber> lotto) {
         if (lotto == null || lotto.isEmpty() || lotto.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException("로또 한장은 6개의 숫자로 이루어져 있어야 합니다.");
+        }
+    }
+
+    private void validateDuplication(List<LottoNumber> lotto) {
+        Set<LottoNumber> lottoNumbers = new HashSet<>(lotto);
+        if (lotto.size() != lottoNumbers.size()) {
+            throw new IllegalArgumentException("로또 한장은 서로 다른 숫자로 이루어져 있어야 합니다.");
         }
     }
 
