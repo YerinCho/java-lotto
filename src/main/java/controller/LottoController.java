@@ -22,16 +22,16 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseCounts purchaseCounts = buyLotto();
+        Money money = new Money(inputView.inputMoney());
+        PurchaseCounts purchaseCounts = buyLotto(money);
         Lottos lottos = generateLottos(purchaseCounts);
         showLottos(lottos, purchaseCounts);
         WinningLotto winningLotto = generateWinningLotto();
         WinningResult winningResult = new WinningResult(lottos, winningLotto);
-        showResult(winningResult);
+        showResult(winningResult, money);
     }
 
-    private PurchaseCounts buyLotto() {
-        Money money = new Money(inputView.inputMoney());
+    private PurchaseCounts buyLotto(Money money) {
         Count manualCount = Count.createManualCount(money, inputView.inputManualCount());
         return new PurchaseCounts(Count.createAutoCount(money, manualCount), manualCount);
     }
@@ -69,8 +69,9 @@ public class LottoController {
         return new WinningLotto(lotto, bonusNumber);
     }
 
-    private void showResult(WinningResult winningResult) {
+    private void showResult(WinningResult winningResult, Money money) {
         outputView.showWinningResult(winningResult.getWinningResult());
+        outputView.showWinningRate(money.calculateWinningRate(winningResult));
     }
 
 }

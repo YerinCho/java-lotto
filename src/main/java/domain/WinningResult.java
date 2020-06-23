@@ -26,6 +26,14 @@ public class WinningResult {
         }
     }
 
+    public int calculateWinningMoney() {
+        int money = 0;
+        for (Map.Entry<Rank, Integer> result : winningResult.entrySet()) {
+            money += result.getKey().getReward() * result.getValue();
+        }
+        return money;
+    }
+
     public Map<Rank, Integer> getWinningResult() {
         return Collections.unmodifiableMap(winningResult);
     }

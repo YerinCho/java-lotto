@@ -30,4 +30,8 @@ public class OutputView {
                     result.getKey().getMatch(), result.getKey().getMessage(), result.getKey().getReward(), result.getValue());
         }
     }
+
+    public void showWinningRate(double winningRate) {
+        System.out.println("총 수익률은 " + winningRate + "% 입니다.");
+    }
 }

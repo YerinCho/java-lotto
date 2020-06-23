@@ -22,7 +22,4 @@ public class PurchaseCounts {
         return autoCount.getCount();
     }
 
-    public int getAllCount() {
-        return manualCount.getCount() + autoCount.getCount();
-    }
 }

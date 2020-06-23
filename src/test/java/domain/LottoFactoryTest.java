@@ -28,7 +28,6 @@ class LottoFactoryTest {
                 .stream()
                 .map(LottoNumber::getLottoNumber)
                 .collect(Collectors.toSet());
-        System.out.println(lotto);
         assertThat(lotto.size()).isEqualTo(6);
     }
 

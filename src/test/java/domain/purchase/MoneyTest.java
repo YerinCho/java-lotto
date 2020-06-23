@@ -1,10 +1,15 @@
 package domain.purchase;
 
+import domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import utils.StringUtils;
 
+import java.util.List;
+
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -32,6 +37,23 @@ class MoneyTest {
     void calculate() {
         Money money = new Money(3000);
         assertThat(money.calculateCount()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("수익률계산")
+    void calculateRate() {
+        Money money = new Money(5000);
+        List<Lotto> lottoList = asList(Lotto.createManualLotto(StringUtils.splitToInteger("1,2,3,4,5,6")),
+                Lotto.createManualLotto(StringUtils.splitToInteger("1,2,3,4,5,7")),
+                Lotto.createManualLotto(StringUtils.splitToInteger("1,2,3,4,5,8")),
+                Lotto.createManualLotto(StringUtils.splitToInteger("1,2,3,10,15,16")),
+                Lotto.createManualLotto(StringUtils.splitToInteger("11,12,13,14,15,16")));
+        Lottos lottos = new Lottos(lottoList);
+        WinningLotto winningLotto = new WinningLotto(
+                Lotto.createManualLotto(StringUtils.splitToInteger("1,2,3,4,5,6")), new LottoNumber(8));
+        WinningResult winningResult = new WinningResult(lottos, winningLotto);
+
+        assertThat(money.calculateWinningRate(winningResult)).isEqualTo(406300);
     }
 
 }
