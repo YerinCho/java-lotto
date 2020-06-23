@@ -26,6 +26,8 @@ public class LottoController {
         Lottos lottos = generateLottos(purchaseCounts);
         showLottos(lottos, purchaseCounts);
         WinningLotto winningLotto = generateWinningLotto();
+        WinningResult winningResult = new WinningResult(lottos, winningLotto);
+        showResult(winningResult);
     }
 
     private PurchaseCounts buyLotto() {
@@ -62,9 +64,13 @@ public class LottoController {
 
     private WinningLotto generateWinningLotto() {
         LottoNumbers lottoNumbers = LottoNumbers.newLottoNumbers();
-        Lotto lotto = Lotto.createManualLotto(inputView.inputLottoNumber());
+        Lotto lotto = Lotto.createManualLotto(inputView.inputWinningNumber());
         LottoNumber bonusNumber = lottoNumbers.valueOf(inputView.inputBonusNumber());
         return new WinningLotto(lotto, bonusNumber);
+    }
+
+    private void showResult(WinningResult winningResult) {
+        outputView.showWinningResult(winningResult.getWinningResult());
     }
 
 }

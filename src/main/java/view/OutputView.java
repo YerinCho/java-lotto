@@ -2,7 +2,10 @@ package view;
 
 import domain.Lotto;
 import domain.Lottos;
+import domain.Rank;
 import domain.purchase.PurchaseCounts;
+
+import java.util.Map;
 
 public class OutputView {
     public void showPurchaseCount(PurchaseCounts purchaseCounts) {
@@ -17,5 +20,14 @@ public class OutputView {
 
     private void showLotto(Lotto lotto) {
         System.out.println(lotto.toString());
+    }
+
+    public void showWinningResult(Map<Rank, Integer> winningResult) {
+        System.out.println("당첨 통계");
+        System.out.println("------------");
+        for (Map.Entry<Rank, Integer> result : winningResult.entrySet()) {
+            System.out.printf("%d개 일치,%s (%d원) - %d개\n",
+                    result.getKey().getMatch(), result.getKey().getMessage(), result.getKey().getReward(), result.getValue());
+        }
     }
 }

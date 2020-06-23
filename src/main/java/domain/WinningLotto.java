@@ -16,4 +16,14 @@ public class WinningLotto {
         }
     }
 
+    public int calculateMatch(Lotto lotto) {
+        return (int) winningLotto.getLotto()
+                .stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
+    public boolean isBonus(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
 }

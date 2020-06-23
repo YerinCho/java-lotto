@@ -29,7 +29,12 @@ public class InputView {
         return manualLottoNumbers;
     }
 
-    public List<Integer> inputLottoNumber() {
+    public List<Integer> inputWinningNumber() {
+        System.out.println("지난 주 당첨 번호를 입력해주세요.");
+        return inputLottoNumber();
+    }
+
+    private List<Integer> inputLottoNumber() {
         return StringUtils.splitToInteger(SCANNER.nextLine());
     }
 
