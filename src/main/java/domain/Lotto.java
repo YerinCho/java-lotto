@@ -8,6 +8,7 @@ import java.util.Set;
 public class Lotto {
     public static final int LOTTO_LENGTH = 6;
     private static final LottoFactory lottoFactory = LottoFactory.getLottoFactory();
+
     private final List<LottoNumber> lotto;
 
     private Lotto(final List<LottoNumber> lotto) {
