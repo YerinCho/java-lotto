@@ -27,6 +27,6 @@ public class Money {
 
     public double calculateWinningRate(WinningResult winningResult) {
         int winningMoney = winningResult.calculateWinningMoney();
-        return (double) (winningMoney - money) / money;
+        return (double) (winningMoney - money) * 100 / money;
     }
 }
