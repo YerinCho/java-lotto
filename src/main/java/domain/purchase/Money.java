@@ -3,7 +3,6 @@ package domain.purchase;
 import domain.WinningResult;
 
 public class Money {
-    private static final String MONEY_INPUT_ERROR_MESSAGE = "1000원 이상의 금액을 입력 해 주세요.";
     private static final int MIN_MONEY = 1000;
 
     private final int money;
@@ -15,7 +14,7 @@ public class Money {
 
     private void validateMoney(int money) {
         if (money < MIN_MONEY) {
-            throw new IllegalArgumentException(MONEY_INPUT_ERROR_MESSAGE);
+            throw new IllegalArgumentException("1000원 이상의 금액을 입력 해 주세요.");
         }
         if (money % MIN_MONEY != 0) {
             throw new IllegalArgumentException("1000원 단위로 입력하세요.");
