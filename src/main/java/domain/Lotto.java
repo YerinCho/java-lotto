@@ -25,7 +25,7 @@ public class Lotto {
     }
 
     private void validateLength(List<LottoNumber> lotto) {
-        if (lotto == null || lotto.isEmpty() || lotto.size() != LOTTO_LENGTH) {
+        if (lotto == null || lotto.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException("로또 한장은 6개의 숫자로 이루어져 있어야 합니다.");
         }
     }

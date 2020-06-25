@@ -24,7 +24,7 @@ public class LottoNumbers {
         return lottoNumbersInstance;
     }
 
-    public LottoNumber valueOf(int number) throws IllegalArgumentException {
+    public LottoNumber valueOf(int number) {
         return lottoNumbers.stream()
                 .filter(lottoNumber -> lottoNumber.isLottoNumber(number))
                 .findFirst()

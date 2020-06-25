@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static domain.Lotto.LOTTO_LENGTH;
 
@@ -32,11 +33,9 @@ public class LottoFactory {
     }
 
     public List<LottoNumber> createManualLotto(List<Integer> manualLottoNumbers) {
-        List<LottoNumber> lottoNumbers = new ArrayList<>();
-        for (int lottoNumber : manualLottoNumbers) {
-            lottoNumbers.add(this.lottoNumbers.valueOf(lottoNumber));
-        }
-        return lottoNumbers;
+        return manualLottoNumbers.stream()
+                .map(lottoNumbers::valueOf)
+                .collect(Collectors.toList());
     }
 
 }
