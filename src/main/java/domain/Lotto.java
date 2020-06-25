@@ -43,7 +43,7 @@ public class Lotto {
     }
 
     public List<LottoNumber> getLotto() {
-        return lotto;
+        return Collections.unmodifiableList(lotto);
     }
 
     @Override

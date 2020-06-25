@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,13 +30,14 @@ public class LottoFactory {
         for (int i = 0; i < LOTTO_LENGTH; i++) {
             lotto.add(lottoNumbers.get(i));
         }
-        return lotto;
+        return Collections.unmodifiableList(lotto);
     }
 
     public List<LottoNumber> createManualLotto(List<Integer> manualLottoNumbers) {
-        return manualLottoNumbers.stream()
-                .map(lottoNumbers::valueOf)
-                .collect(Collectors.toList());
+        return Collections.unmodifiableList(
+                manualLottoNumbers.stream()
+                        .map(lottoNumbers::valueOf)
+                        .collect(Collectors.toList()));
     }
 
 }
